@@ -5,7 +5,8 @@ const SCHEMA_DIR = path.join(__dirname, "..", "src", "schema");
 const VERSION_FILE = path.join(SCHEMA_DIR, "version.json");
 const LOADER_FILE = path.join(SCHEMA_DIR, "loader.ts");
 
-const GITHUB_API_URL = "https://api.github.com/repos/osquery/osquery/releases/latest";
+const GITHUB_API_URL =
+  "https://api.github.com/repos/osquery/osquery/releases/latest";
 const SCHEMA_BASE_URL =
   "https://raw.githubusercontent.com/osquery/osquery-site/main/src/data/osquery_schema_versions";
 

@@ -59,7 +59,8 @@ function checkPackageJson(): PackageJson | null {
   if (!pkg.title) error("package.json missing 'title' field");
   if (!pkg.author) error("package.json missing 'author' field");
   if (!pkg.icon) error("package.json missing 'icon' field");
-  if (!pkg.license) warn("package.json missing 'license' field (required for store)");
+  if (!pkg.license)
+    warn("package.json missing 'license' field (required for store)");
   if (!pkg.categories || pkg.categories.length === 0) {
     warn("package.json missing 'categories' (required for store)");
   }
@@ -86,7 +87,9 @@ function checkSourceFiles(pkg: PackageJson) {
     const tsPath = path.join(SRC_DIR, `${cmd.name}.ts`);
 
     if (!fs.existsSync(tsxPath) && !fs.existsSync(tsPath)) {
-      error(`Source file missing for command '${cmd.name}': expected ${cmd.name}.tsx or ${cmd.name}.ts`);
+      error(
+        `Source file missing for command '${cmd.name}': expected ${cmd.name}.tsx or ${cmd.name}.ts`,
+      );
       allFound = false;
     }
   }
@@ -141,7 +144,9 @@ function checkBuildOutput(pkg: PackageJson) {
   for (const cmd of pkg.commands) {
     const jsPath = path.join(DIST_DIR, `${cmd.name}.js`);
     if (!fs.existsSync(jsPath)) {
-      error(`Build output missing for command '${cmd.name}': expected dist/${cmd.name}.js`);
+      error(
+        `Build output missing for command '${cmd.name}': expected dist/${cmd.name}.js`,
+      );
       allFound = false;
     }
   }
@@ -152,13 +157,21 @@ function checkBuildOutput(pkg: PackageJson) {
     // Check build freshness
     const srcFiles = pkg.commands.map((cmd) => {
       const tsxPath = path.join(SRC_DIR, `${cmd.name}.tsx`);
-      return fs.existsSync(tsxPath) ? tsxPath : path.join(SRC_DIR, `${cmd.name}.ts`);
+      return fs.existsSync(tsxPath)
+        ? tsxPath
+        : path.join(SRC_DIR, `${cmd.name}.ts`);
     });
 
-    const distFiles = pkg.commands.map((cmd) => path.join(DIST_DIR, `${cmd.name}.js`));
+    const distFiles = pkg.commands.map((cmd) =>
+      path.join(DIST_DIR, `${cmd.name}.js`),
+    );
 
-    const newestSrc = Math.max(...srcFiles.filter(fs.existsSync).map((f) => fs.statSync(f).mtimeMs));
-    const oldestDist = Math.min(...distFiles.filter(fs.existsSync).map((f) => fs.statSync(f).mtimeMs));
+    const newestSrc = Math.max(
+      ...srcFiles.filter(fs.existsSync).map((f) => fs.statSync(f).mtimeMs),
+    );
+    const oldestDist = Math.min(
+      ...distFiles.filter(fs.existsSync).map((f) => fs.statSync(f).mtimeMs),
+    );
 
     if (newestSrc > oldestDist) {
       warn("Source files are newer than build output - rebuild recommended");
@@ -189,7 +202,9 @@ function checkStoreRequirements() {
   const screenshotsDir = path.join(ROOT_DIR, "metadata");
   const altScreenshotsDir = path.join(ROOT_DIR, "screenshots");
   if (!fs.existsSync(screenshotsDir) && !fs.existsSync(altScreenshotsDir)) {
-    warn("No screenshots directory found (metadata/ or screenshots/) - required for store");
+    warn(
+      "No screenshots directory found (metadata/ or screenshots/) - required for store",
+    );
   } else {
     success("Screenshots directory exists");
   }

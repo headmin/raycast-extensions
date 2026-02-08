@@ -8,19 +8,19 @@ A Raycast extension for exploring [Osquery](https://osquery.io/) tables, columns
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| Search Tables | Browse and search osquery tables with platform filters |
-| Find Column | Find columns across tables and build JOIN queries |
-| Query Templates | Common query templates organized by category |
-| Validate Query | Validate SQL queries against the schema |
+| Command         | Description                                            |
+| --------------- | ------------------------------------------------------ |
+| Search Tables   | Browse and search osquery tables with platform filters |
+| Find Column     | Find columns across tables and build JOIN queries      |
+| Query Templates | Common query templates organized by category           |
+| Validate Query  | Validate SQL queries against the schema                |
 
 ## Configuration
 
-| Preference | Description | Default |
-|------------|-------------|---------|
-| Default Platform | Filter tables by OS | macOS |
-| Fleet URL | Your Fleet server URL (optional) | - |
+| Preference       | Description                      | Default |
+| ---------------- | -------------------------------- | ------- |
+| Default Platform | Filter tables by OS              | macOS   |
+| Fleet URL        | Your Fleet server URL (optional) | -       |
 
 ## Schema Updates
 
