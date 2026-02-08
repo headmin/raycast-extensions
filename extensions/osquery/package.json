@@ -93,5 +93,8 @@
     "prepublish": "npm run sanity-check",
     "publish": "npx @raycast/api@latest publish",
     "update-schema": "npx ts-node scripts/update-schema.ts"
-  }
+  },
+  "platforms": [
+    "macOS"
+  ]
 }
